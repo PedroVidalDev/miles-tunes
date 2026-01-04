@@ -2,12 +2,16 @@ import { Router } from "express";
 import { container } from "tsyringe";
 
 import { SearchController } from "../controllers/search.controller";
+import { ConvertController } from "../controllers/convert.controller";
 
 const routes = Router();
 
 const searchController = container.resolve(SearchController);
-routes.get("/", (req, res) => searchController.home(req, res));
+const convertController = container.resolve(ConvertController);
 
-routes.get("/converter", (req, res) => searchController.convert(req, res));
+routes.get("/", (req, res) => searchController.home(req, res));
+routes.get("/search", (req, res) => searchController.search(req, res));
+
+routes.get("/convert", (req, res) => convertController.convert(req, res));
 
 export { routes };

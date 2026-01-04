@@ -10,9 +10,9 @@ export class SearchController {
         res.render("search/index", { title: "MilesTune | Converta seus videos em audios" });
     }
 
-    public convert(req: Request, res: Response): void {
+    public search(req: Request, res: Response): void {
         const result = this.searchService.convert(req.body);
 
-        res.json(result);
+        res.json({ message: "Search endpoint", data: result });
     }
 }
