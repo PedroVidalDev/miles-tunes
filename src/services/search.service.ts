@@ -24,7 +24,7 @@ export class SearchService {
         } catch (error) {
             console.error("Error connecting to YouTube:", error);
             return {
-                isValid: true,
+                isValid: false,
             }
         }
     }
