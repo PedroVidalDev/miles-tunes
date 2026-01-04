@@ -8,7 +8,7 @@ export class ConverterController {
     constructor(private converterService: ConverterService) {}
 
     public home(req: Request, res: Response): void {
-        res.render("converter/index", { title: "Home", message: "Hello from Controller Home!" });
+        res.render("converter/index", { title: "MilesTune | Converta seus videos em audios" });
     }
 
     public convert(req: Request, res: Response): void {

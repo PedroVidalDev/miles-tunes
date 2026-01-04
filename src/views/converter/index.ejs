@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/converter.css">
+    <link rel="icon" type="image/png" href="/images/miles_icon.png">
     <title><%= title %></title>
 </head>
 <body>
-    <h1><%= message %></h1>
-    <p>This is a server-side rendered page.</p>
+    <h1>Transforme seus videos em audios com o MilesTune</h1>
+    <div class="input-container">
+        <img src="images/miles_icon.png" alt="MilesTune Logo" class="logo">
+        <input id="converter-input" type="text" placeholder="Cole o link do video aqui">
+    </div>
+    <button class="convert-button" id="convert-button">Procurar</button>
 </body>
+<script src="/scripts/converter/events.js" type="module"></script>
 </html>

@@ -1,0 +1,88 @@
+body {
+    width: 100%;
+    height: 100vh;
+
+    gap: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--black-600);
+    background-image: 
+        radial-gradient(ellipse at center, transparent 0%, transparent 30%, var(--black-600) 70%),
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 25px 25px, 25px 25px;
+    background-position: center, 0 0, 0 0;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 32px;
+}
+
+.input-container {
+    position: relative;
+
+    width: 400px;
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container img {
+    z-index: 99;
+
+    position: absolute;
+    width: 78px;
+    height: 78px;
+
+    margin-right: 100%;
+    margin-top: 25px;
+
+    transform: rotate(-10deg);
+}
+
+.input-container input {
+    width: 100%;
+    height: 100%;
+
+    border: 3px solid var(--primary-color);
+
+    padding-left: 34px;
+
+    transform: skewX(-10deg);
+}
+
+.input-container input:focus {
+    outline: 0;
+}
+
+.convert-button {
+    display: none;
+
+    width: 200px;
+    height: 50px;
+
+    border: 0;
+    transform: skewX(-10deg);
+
+    background-color: var(--primary-color);
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: filter 0.5s;
+}
+
+.convert-button:hover {
+    filter: brightness(0.7);
+}
