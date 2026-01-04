@@ -15,7 +15,6 @@ searchButton.addEventListener("click", async () => {
     const query = searchInput.value;
 
     try {
-
         const response = await fetch(`/search?yturl=${encodeURIComponent(query)}`, {
             method: 'GET',
             headers: {
@@ -23,8 +22,8 @@ searchButton.addEventListener("click", async () => {
             }
         });
         const data = await response.json();
-        
-        if (data.isValid) {
+
+        if (data.data.isValid) {
             window.location.href = `/result?yturl=${encodeURIComponent(query)}`;
         } else {
             alert("Link do video invalido");

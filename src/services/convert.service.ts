@@ -1,67 +1,65 @@
-import Ffmpeg from "fluent-ffmpeg";
 import { injectable } from "tsyringe";
-import ytdl from "ytdl-core";
+import { spawn } from "child_process";
+import ffmpeg from "fluent-ffmpeg";
 import path from "path";
 import fs from "fs";
 
 @injectable()
 export class ConvertService {
+
     public async convert(ytUrl: string, outputDir: string = "./downloads") {
-        const check = await this.checkVideoAvailability(ytUrl);
-
-        if (!check.isValid) {
-            return {
-                success: false,
-                message: "Invalid YouTube URL."
-            }
-        }
-
         if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
-        const safeTitle = check.title.replace(/[<>:"/\\|?*]+/g, "");
-        const outputPath = path.resolve(outputDir, `${safeTitle}.mp3`);
+        
+        const timestamp = Date.now();
+        const outputPath = path.resolve(outputDir, `audio-${timestamp}.mp3`);
 
         return new Promise((resolve, reject) => {
-            const stream = ytdl(ytUrl, { 
-                quality: 'highestaudio',
-                filter: 'audioonly' 
+            console.log("1. Spawning yt-dlp...");
+
+            const ytDlp = spawn('yt-dlp', [
+                '-o', '-',             
+                '-q',                  
+                '--no-progress',       
+                '-f', 'bestaudio',     
+                ytUrl
+            ]);
+
+            const command = ffmpeg(ytDlp.stdout)
+                .audioBitrate(128)
+                .save(outputPath);
+
+            command.on('start', (commandLine) => {
+                console.log('2. FFmpeg process started:', commandLine);
             });
 
-            Ffmpeg(stream)
-                .audioBitrate(128)
-                .save(outputPath)
-                .on('end', () => {
-                    resolve({ 
-                        success: true, 
-                        message: "Conversion complete", 
-                        path: outputPath 
-                    });
-                })
-                .on('error', (err) => {
-                    console.error("FFmpeg Error:", err);
-                    resolve({ success: false, message: "Conversion failed during processing." });
+            command.on('progress', (progress) => {
+                console.log(`3. Processing: ${progress.timemark}`);
+            });
+
+            command.on('end', () => {
+                console.log('4. FFmpeg finished processing');
+                resolve({ 
+                    success: true, 
+                    message: "Conversion complete", 
+                    path: outputPath 
                 });
+            });
+
+            command.on('error', (err) => {
+                console.error('FFmpeg Error:', err.message);
+                ytDlp.kill();
+                resolve({ success: false, message: "Conversion failed during processing." });
+            });
+
+            ytDlp.stderr.on('data', (data) => {
+                console.error(`yt-dlp stderr: ${data}`);
+            });
+
+            ytDlp.on('close', (code) => {
+                if (code !== 0) {
+                    console.log(`yt-dlp exited with code ${code}`);
+                }
+            });
         });
-    }
-
-    private async checkVideoAvailability(url: string) {
-        try {
-            const oEmbedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
-            
-            const response = await fetch(oEmbedUrl, { method: 'GET' });
-            const data = await response.json();
-
-            return {
-                isValid: true,
-                title: data.title,
-                authorName: data.author_name,
-                thumbnailUrl: data.thumbnail_url
-            }
-
-        } catch (error) {
-            console.error("Error connecting to YouTube:", error);
-            return {
-                isValid: false,
-            }
-        }
     }
 }
