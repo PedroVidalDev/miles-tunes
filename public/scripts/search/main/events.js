@@ -1,5 +1,5 @@
 import { searchButton, searchInput } from "./consts.js";
-import { isValidYouTubeUrl } from "../utils/isValidYouTubeUrl.js";
+import { isValidYouTubeUrl } from "../../utils/isValidYouTubeUrl.js";
 
 searchInput.addEventListener('input', (event) => {
     const inputValue = event.target.value;
