@@ -2,6 +2,7 @@ import { injectable } from "tsyringe";
 import { Request, Response } from "express";
 
 import { SearchService } from "../services/search.service";
+import { ResponseDTO } from "../dtos/ResponseDTO";
 
 @injectable()
 export class SearchController {
@@ -36,6 +37,6 @@ export class SearchController {
 
         const result = await this.searchService.search(ytUrl);
 
-        res.json(result);
+        res.status(200).json(new ResponseDTO(200, "Search completed", result));
     }
 }
