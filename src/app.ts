@@ -1,11 +1,14 @@
-import express, { Application, Request, Response } from 'express';
+import path from 'path';
+import express, { Application } from 'express';
+
+import { routes } from './routes/converter.router';
 
 const app: Application = express();
 
-app.use(express.json());
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/views'));
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello from app.ts!');
-});
+app.use(express.json());
+app.use(routes);
 
 export default app;
