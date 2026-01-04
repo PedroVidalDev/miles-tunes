@@ -10,3 +10,8 @@ searchInput.addEventListener('input', (event) => {
         searchButton.style.display = "none";
     }
 });
+
+searchButton.addEventListener("click", () => {
+    const query = searchInput.value;
+    window.location.href = `/search?yturl=${encodeURIComponent(query)}`;
+});
