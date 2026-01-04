@@ -2,12 +2,23 @@ import { downloadButton } from "./consts.js";
 import { isValidYouTubeUrl } from "../../utils/isValidYouTubeUrl.js";
 
 downloadButton.addEventListener('click', async (event) => {
+    downloadButton.disabled = true;
+
+    downloadButton.querySelector('p').style.display = 'none';
+    downloadButton.querySelector('img').style.display = 'block';
+
     const queryParams = new URLSearchParams(window.location.search);
     const videoUrl = queryParams.get('yturl');
 
     if (!isValidYouTubeUrl(videoUrl)) {
         event.preventDefault();
         alert('Invalid YouTube URL. Please check the link and try again.');
+        downloadButton.disabled = false;
+
+        downloadButton.querySelector('p').style.display = 'block';
+        downloadButton.querySelector('img').style.display = 'none';
+
+        return;
     }
 
     const response = await fetch(`/convert?yturl=${videoUrl}` , {
@@ -41,4 +52,9 @@ downloadButton.addEventListener('click', async (event) => {
 
     link.remove();
     window.URL.revokeObjectURL(url);
+
+    downloadButton.disabled = false;
+
+    downloadButton.querySelector('p').style.display = 'block';
+    downloadButton.querySelector('img').style.display = 'none';
 });
