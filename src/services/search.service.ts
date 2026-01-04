@@ -1,7 +1,7 @@
 import { injectable } from "tsyringe";
 
 @injectable()
-export class ConverterService {
+export class SearchService {
     public convert(data: any): any {
         return data;
     }

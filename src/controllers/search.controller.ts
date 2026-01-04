@@ -1,18 +1,17 @@
 import { injectable } from "tsyringe";
 import { Request, Response } from "express";
 
-import { ConverterService } from "../services/converter.service";
+import { SearchService } from "../services/search.service";
 
 @injectable()
-export class ConverterController {
-    constructor(private converterService: ConverterService) {}
-
+export class SearchController {
+    constructor(private searchService: SearchService) {}
     public home(req: Request, res: Response): void {
         res.render("search/index", { title: "MilesTune | Converta seus videos em audios" });
     }
 
     public convert(req: Request, res: Response): void {
-        const result = this.converterService.convert(req.body);
+        const result = this.searchService.convert(req.body);
 
         res.json(result);
     }
