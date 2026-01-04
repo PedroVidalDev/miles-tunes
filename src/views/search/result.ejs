@@ -11,8 +11,18 @@
 <body>
     <h1>Seria esse seu video?</h1>
     <div class="video-container">
-        <%= data.title %> | <%= data.authorName %>
-        <img src="<%= data.thumbnailUrl %>" alt="Video Thumbnail" class="thumbnail">
+        <p> <%= data.title %> </p>
+        <span> <%= data.authorName %> </span>
+
+        <div class="image-container">
+
+            <img src="<%= data.thumbnailUrl %>" alt="Video Thumbnail">
+        
+            <div class="button-container">
+                <button> Baixar xx </button>
+                <button> Baixar yy </button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
