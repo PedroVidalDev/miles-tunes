@@ -1,7 +1,7 @@
 import path from 'path';
 import express, { Application } from 'express';
 
-import { routes } from './routes/search.router';
+import { routes } from './routes/index.router';
 
 const app: Application = express();
 

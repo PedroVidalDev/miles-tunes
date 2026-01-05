@@ -90,6 +90,20 @@ h1 {
     filter: brightness(0.7);
 }
 
+.terms-text {
+    color: #fff;
+    font-size: 10px;
+}
+
+.terms-text a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.terms-text a:hover {
+    text-decoration: underline;
+}
+
 @media (max-width: 570px) {
 
     h1 {
