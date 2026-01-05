@@ -23,3 +23,35 @@
     --black-900: #030303;
     --black-1000: #000000;
 }
+
+@keyframes led-flicker {
+    0%, 100% {
+        filter: brightness(1) drop-shadow(0 0 2px var(--primary-color));
+    }
+    10% {
+        filter: brightness(1.8) drop-shadow(0 0 15px var(--primary-color));
+    }
+    20% {
+        filter: brightness(0.8) drop-shadow(0 0 1px var(--primary-color));
+    }
+    30% {
+        filter: brightness(2.2) drop-shadow(0 0 20px var(--primary-color));
+    }
+    45% {
+        filter: brightness(1.2) drop-shadow(0 0 8px var(--primary-color));
+    }
+    60% {
+        filter: brightness(0.5) drop-shadow(0 0 0px var(--primary-color));
+    }
+    75% {
+        filter: brightness(2.5) drop-shadow(0 0 25px var(--primary-color));
+    }
+    85% {
+        filter: brightness(1.5) drop-shadow(0 0 12px var(--primary-color));
+    }
+}
+
+.led-effect {
+    animation: led-flicker 6s infinite;
+    animation-timing-function: steps(8, jump-none);
+}
