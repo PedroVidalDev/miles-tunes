@@ -38,7 +38,7 @@ COPY --from=builder /app/dist ./dist
 
 COPY src/views ./dist/views
 
-COPY public ./dist/public
+COPY public ./public
 
 # Cria a pasta de downloads para garantir que existe e tem permissão
 RUN mkdir -p downloads && chown node:node downloads
