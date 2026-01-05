@@ -36,6 +36,10 @@ RUN npm ci --only=production
 
 COPY --from=builder /app/dist ./dist
 
+COPY src/views ./dist/views
+
+COPY public ./dist/public
+
 # Cria a pasta de downloads para garantir que existe e tem permissão
 RUN mkdir -p downloads && chown node:node downloads
 
