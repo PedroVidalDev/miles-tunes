@@ -16,6 +16,7 @@ Miles Tunes é uma aplicação web que permite pesquisar vídeos no YouTube e co
 
 ## 📁 Estrutura do Projeto
 
+```
 miles-tunes/
 ├── src/
 │   ├── app.ts                      # Configuração principal da aplicação
