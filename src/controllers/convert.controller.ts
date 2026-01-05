@@ -19,6 +19,11 @@ export class ConvertController {
 
         const result = await this.convertService.convert(ytUrl);
 
+        if (!result.success || !result.path) {
+            res.status(500).json(new ResponseDTO(500, result.message));
+            return;
+        }
+
         res.download(result.path, (err) => {
             if (err) {
                 console.error("Error sending file:", err);

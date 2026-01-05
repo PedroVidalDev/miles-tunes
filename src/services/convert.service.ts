@@ -4,10 +4,16 @@ import ffmpeg from "fluent-ffmpeg";
 import path from "path";
 import fs from "fs";
 
+export interface ConvertResult {
+    success: boolean;
+    message: string;
+    path?: string;
+}
+
 @injectable()
 export class ConvertService {
 
-    public async convert(ytUrl: string, outputDir: string = "./downloads") {
+    public async convert(ytUrl: string, outputDir: string = "./downloads"): Promise<ConvertResult> {
         if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
         
         const timestamp = Date.now();
