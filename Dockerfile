@@ -40,6 +40,8 @@ COPY src/views ./dist/views
 
 COPY public ./public
 
+COPY --chown=node:node cookies.txt ./cookies.txt
+
 # Cria a pasta de downloads para garantir que existe e tem permissão
 RUN mkdir -p downloads && chown node:node downloads
 

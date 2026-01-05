@@ -15,20 +15,28 @@ export class ConvertService {
 
     public async convert(ytUrl: string, outputDir: string = "./downloads"): Promise<ConvertResult> {
         if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
-        
+        const cookiePath = path.resolve('./cookies.txt');
+        const absoluteOutputDir = path.resolve(outputDir);
+    
         const timestamp = Date.now();
         const outputPath = path.resolve(outputDir, `audio-${timestamp}.mp3`);
 
         return new Promise((resolve, reject) => {
             console.log("1. Spawning yt-dlp...");
 
-            const ytDlp = spawn('yt-dlp', [
+            const args = [
+                '--js-runtimes', 'node',
+                '--cookies', cookiePath,
+                '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
                 '-o', '-',             
                 '-q',                  
                 '--no-progress',       
-                '-f', 'bestaudio',     
+                '-f', 'bestaudio/best',     
+                
                 ytUrl
-            ]);
+            ];
+
+            const ytDlp = spawn('yt-dlp', args, { cwd: absoluteOutputDir });
 
             const command = ffmpeg(ytDlp.stdout)
                 .audioBitrate(128)
