@@ -90,22 +90,6 @@ h1 {
     filter: brightness(0.7);
 }
 
-.terms-text {
-    color: #fff;
-    font-size: 10px;
-    font-family: "Poppins", sans-serif;
-}
-
-.terms-text a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-family: "Poppins", sans-serif;
-}
-
-.terms-text a:hover {
-    text-decoration: underline;
-}
-
 .how-to-use {
     display: flex;
     

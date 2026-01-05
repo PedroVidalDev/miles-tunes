@@ -11,8 +11,8 @@
 <body>
     <h1>Seria esse seu video?</h1>
     <div class="video-container">
-        <p> <%= data.title %> </p>
-        <span> <%= data.authorName %> </span>
+        <p class="video-title"> <%= data.title %> </p>
+        <span class="video-author"> <%= data.authorName %> </span>
 
         <div class="image-container">
 
@@ -27,6 +27,9 @@
                 </button>
             </div>
         </div>
+
+        <p class="terms-text">Ao baixar o arquivo, você concorda com nossos <a href="/terms-of-use">termos de uso</a>.</p>
+
     </div>
 </body>
 <script src="/scripts/search/result/events.js" type="module"></script>

@@ -35,14 +35,14 @@ h1 {
     justify-content: center;
 }
 
-.video-container p {
+.video-title {
     color: white;
     font-size: 20px;
 
     text-align: center;
 }
 
-.video-container span  {
+.video-author  {
     color: rgb(156, 156, 156);
     font-size: 20px;
 
