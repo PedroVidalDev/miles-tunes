@@ -17,9 +17,13 @@ export class ConvertService {
         if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
         const cookiePath = path.resolve('./cookies.txt');
         const absoluteOutputDir = path.resolve(outputDir);
+
+        const oEmbedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(ytUrl)}&format=json`;
+            
+        const response = await fetch(oEmbedUrl, { method: 'GET' });
+        const data = await response.json();
     
-        const timestamp = Date.now();
-        const outputPath = path.resolve(outputDir, `audio-${timestamp}.mp3`);
+        const outputPath = path.resolve(outputDir, `${data.title}.mp3`);
 
         return new Promise((resolve, reject) => {
             console.log("1. Spawning yt-dlp...");
