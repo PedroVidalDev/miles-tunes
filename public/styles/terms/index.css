@@ -59,4 +59,12 @@ h1 {
         font-size: 24px;
     }
 
+    .terms-content h2 {
+        font-size: 16px;
+    }
+
+    .terms-content, .terms-content p, .terms-content ul li {
+        font-size: 10px;
+    }
+
 }

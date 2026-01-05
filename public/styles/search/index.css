@@ -93,15 +93,52 @@ h1 {
 .terms-text {
     color: #fff;
     font-size: 10px;
+    font-family: "Poppins", sans-serif;
 }
 
 .terms-text a {
     color: var(--primary-color);
     text-decoration: none;
+    font-family: "Poppins", sans-serif;
 }
 
 .terms-text a:hover {
     text-decoration: underline;
+}
+
+.how-to-use {
+    display: flex;
+    
+    justify-content: center;
+    align-items: flex-start;
+
+    width: 80%;
+    gap: 64px;
+
+    margin-top: 32px;
+}
+
+.topic {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.topic h2 {
+    width: 100%;
+    text-align: left;
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.topic ul li {
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: justify;
 }
 
 @media (max-width: 570px) {
@@ -110,7 +147,29 @@ h1 {
         font-size: 24px;
     }
 
+    .terms-text {
+        font-size: 8px;
+    }
+
     .input-container {
         width: 85%;
+    }
+
+    .how-to-use {
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 32px;
+    }
+
+    .topic h2 {
+        font-size: 14px;
+
+        text-align: center;
+    }
+
+    .topic ul li {
+        font-size: 10px;
     }
 }
