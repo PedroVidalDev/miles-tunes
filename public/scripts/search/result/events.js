@@ -1,4 +1,4 @@
-import { downloadButton } from "./consts.js";
+import { downloadButton, thumbImage } from "./consts.js";
 import { isValidYouTubeUrl } from "../../utils/isValidYouTubeUrl.js";
 
 downloadButton.addEventListener('click', async (event) => {
@@ -58,3 +58,10 @@ downloadButton.addEventListener('click', async (event) => {
     downloadButton.querySelector('p').style.display = 'block';
     downloadButton.querySelector('img').style.display = 'none';
 });
+
+thumbImage.addEventListener('click', () => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const yturl = queryParams.get('yturl');
+
+    window.open(yturl, '_blank');
+})

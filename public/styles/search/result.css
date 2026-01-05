@@ -76,6 +76,14 @@ h1 {
 .thumb-image {
     width: 410px;
     height: 310px;
+
+    cursor: pointer;
+
+    transition: filter 0.5s;
+}
+
+.thumb-image:hover {
+    filter: brightness(0.8);
 }
 
 .button-container {
